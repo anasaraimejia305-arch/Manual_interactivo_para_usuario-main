@@ -1,0 +1,2207 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manual Técnico Interactivo | UPTA</title>
+    <link rel="icon" href="./assets/img/upta_logo.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"
+    ></script>
+    <style>
+      :root {
+        --primary-color: #6a7efc;
+        --primary-dark: #4a5bda;
+        --bg-light: #f8f9fa;
+        --text-light: #212529;
+        --card-light: #ffffff;
+
+        --bg-dark: #1a1b2a;
+        --text-dark: #f0f0f0;
+        --card-dark: #25263a;
+        --nav-dark: #161722;
+      }
+
+      body.dark-mode .navbar-nav .nav-link.active,
+      body.dark-mode .navbar-nav .nav-link:focus,
+      body.dark-mode .navbar-nav .nav-link:hover {
+        color: var(--text-dark) !important;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        transition:
+          background-color 0.4s ease,
+          color 0.4s ease;
+        background-color: var(--bg-light);
+        color: var(--text-light);
+        overflow-x: hidden;
+      }
+
+      body.dark-mode {
+        background-color: var(--bg-dark);
+        color: var(--text-dark);
+      }
+
+      body.dark-mode .card,
+      body.dark-mode .list-group-item {
+        background-color: var(--card-dark);
+        color: var(--text-dark);
+        border-color: rgba(255, 255, 255, 0.05);
+      }
+
+      body.dark-mode .navbar {
+        background-color: rgba(22, 23, 34, 0.85) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      body.dark-mode .text-muted {
+        color: #b0b3c7 !important;
+      }
+
+      body.dark-mode .modal-content {
+        background-color: var(--card-dark);
+        color: var(--text-dark);
+      }
+
+      .navbar {
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      .nav-link {
+        font-weight: 500;
+        position: relative;
+      }
+
+      .nav-link.active::after {
+        content: "";
+        position: absolute;
+        width: 50%;
+        height: 3px;
+        bottom: 5px;
+        left: 25%;
+        background-color: var(--primary-color);
+        border-radius: 10px;
+      }
+
+      .navbar-brand span {
+        color: var(--text-light);
+        transition: color 0.3s ease;
+      }
+
+      body.dark-mode .navbar-brand span {
+        color: var(--text-dark) !important;
+      }
+
+      .hero-section {
+        background-image: url("./assets/img/upta.png");
+        background-size: cover;
+        background-position: center;
+        border-radius: 0 0 50px 50px;
+        padding: 8rem 0;
+        margin-bottom: 4rem;
+      }
+
+      .hover-card {
+        transition:
+          transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+          box-shadow 0.3s ease;
+        border: none;
+        overflow: hidden;
+      }
+
+      .hover-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+      }
+
+      .feature-icon-box {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(106, 126, 252, 0.1);
+        color: var(--primary-color);
+        margin: 0 auto 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .hover-card:hover .feature-icon-box {
+        background: var(--primary-color);
+        color: #fff;
+      }
+
+      .text-primary-custom {
+        color: var(--primary-color) !important;
+      }
+
+      .bg-primary-custom {
+        background-color: var(--primary-color) !important;
+      }
+
+      .btn-primary-custom {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        color: white;
+        padding: 0.6rem 1.5rem;
+        transition: all 0.3s;
+      }
+
+      .btn-primary-custom:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+        transform: scale(1.05);
+      }
+
+      .section-title {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 2rem;
+        font-weight: 700;
+      }
+
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: var(--primary-color);
+        margin: 10px auto 0;
+        border-radius: 2px;
+      }
+
+      .developer-img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border: 5px solid var(--primary-color);
+        padding: 5px;
+        background: white;
+      }
+
+      .page-section {
+        display: none;
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      .page-section.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Estilos adicionales para las tarjetas colapsables */
+      .collapse {
+        transition: all 0.3s ease-in-out;
+      }
+
+      .card[aria-expanded="true"] {
+        border: 2px solid var(--primary-color) !important;
+      }
+
+      .card[aria-expanded="true"] .feature-icon-box {
+        background: var(--primary-color) !important;
+        color: #fff !important;
+      }
+
+      .card[aria-expanded="true"] .text-primary-custom {
+        color: var(--primary-dark) !important;
+      }
+
+      /* Estilos para las guías paso a paso */
+      .step-card {
+        border-left: 4px solid var(--primary-color);
+        transition: all 0.3s ease;
+      }
+
+      .step-card:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1) !important;
+      }
+
+      .step-number {
+        width: 40px;
+        height: 40px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 1rem;
+      }
+
+      .problem-card {
+        border-top: 4px solid #dc3545;
+        transition: all 0.3s ease;
+      }
+
+      .prevention-card {
+        border-top: 4px solid #28a745;
+        transition: all 0.3s ease;
+      }
+
+      .tool-list {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      .tool-list li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      body.dark-mode .tool-list li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .badge-custom {
+        font-size: 0.75em;
+        padding: 0.25em 0.75em;
+      }
+
+      :root {
+        --primary-color: #6a7efc;
+        --bg-dark: #0f111a;
+        --card-bg: #1a1d2d;
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        color: white;
+      }
+
+      /* Estilos para el Visualizador 3D */
+      .viewer-container {
+        width: 100%;
+        height: 450px;
+        background: radial-gradient(circle, #242840 0%, #0f111a 100%);
+        border-radius: 20px;
+        border: 1px solid rgba(106, 126, 252, 0.2);
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+
+      model-viewer {
+        width: 100%;
+        height: 100%;
+        --poster-color: transparent;
+      }
+
+      /* Estilo para las Pestañas (Tabs) */
+      #projectTabs .nav-link {
+        color: #b0b3c7;
+        border: 1px solid transparent;
+        transition: all 0.4s ease;
+      }
+
+      #projectTabs .nav-link.active {
+        background-color: var(--primary-color) !important;
+        color: white !important;
+        box-shadow: 0 4px 15px rgba(106, 126, 252, 0.4);
+        transform: scale(1.05);
+      }
+
+      /* Timeline */
+      .timeline-item {
+        border-left: 2px solid var(--primary-color);
+        padding-left: 20px;
+        padding-bottom: 20px;
+        position: relative;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -7px;
+        top: 0;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--primary-color);
+      }
+
+      .text-primary-custom {
+        color: var(--primary-color);
+      }
+    </style>
+  </head>
+
+  <body class="dark-mode">
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a
+          class="navbar-brand fw-bold d-flex align-items-center gap-2"
+          href="#"
+        >
+          <img src="./assets/img/logo.png" alt="Logo" height="35" />
+          <span>Manual Técnico</span>
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center gap-2">
+            <li class="nav-item">
+              <a class="nav-link page-link active text-primary" href="#" data-page="home"
+                >Inicio</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-link text-primary" href="#" data-page="introduction"
+                >Introducción</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-link text-primary" href="#" data-page="community"
+                >Comunidad</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-link text-primary" href="#" data-page="components"
+                >Componentes</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-link text-primary" href="#" data-page="model3D">3D</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-link text-primary" href="#" data-page="developer"
+                >Desarrollador</a
+              >
+            </li>
+            <li class="nav-item ms-lg-3">
+              <button
+                class="btn btn-outline-secondary rounded-circle shadow-sm"
+                id="themeToggle"
+                style="width: 40px; height: 40px"
+              >
+                <i class="fas fa-sun"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section id="home" class="page-section active">
+        <div
+          class="hero-section text-center text-white position-relative overflow-hidden"
+        >
+          <div class="container position-relative z-2">
+            <h1 class="display-3 fw-bold mb-3">
+              Mantenimiento Preventivo y Correctivo
+            </h1>
+            <p
+              class="fw-bold lead mb-5 mx-auto text-white p-3 rounded-4 shadow-lg"
+              style="
+                max-width: 800px;
+                background-color: rgba(74, 91, 218);
+                backdrop-filter: blur(4px);
+              "
+            >
+              Guía completa para el mantenimiento correctivo de software y
+              preventivo de hardware dirigida al Vicerrectorado Académico de la
+              UPTA.
+            </p>
+            <div
+              class="d-flex flex-wrap justify-content-center gap-3 align-items-center"
+            >
+              <a
+                href="#"
+                class="btn btn-primary-custom rounded-pill shadow-lg page-link"
+                data-page="introduction"
+              >
+                Comenzar Guía <i class="fas fa-arrow-right ms-2"></i>
+              </a>
+              <a
+                href="https://www.upta.edu.ve"
+                target="_blank"
+                class="btn btn-outline-light rounded-pill px-4"
+              >
+                Web UPTA
+              </a>
+              <a
+                href="http://upta.edu.ve"
+                target="_blank"
+                class="d-inline-block transition-hover"
+              >
+                <img
+                  src="./assets/img/upta_logo.png"
+                  alt="Logo UPTA"
+                  class="bg-white rounded p-1"
+                  style="height: 45px"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="container mb-5">
+          <div class="text-center">
+            <h2 class="section-title">Contenido del Manual</h2>
+          </div>
+
+          <div class="row g-4">
+            <!-- Software Correctivo -->
+            <div class="col-md-4">
+              <div
+                class="card hover-card h-100 p-4 text-center rounded-4 shadow-sm"
+                data-bs-toggle="collapse"
+                href="#collapseSoftware"
+                role="button"
+                aria-expanded="false"
+                aria-controls="collapseSoftware"
+                style="cursor: pointer"
+              >
+                <div class="feature-icon-box">
+                  <i class="fas fa-laptop-code fa-2x"></i>
+                </div>
+                <h4 class="fw-bold mb-3">Software Correctivo</h4>
+                <p class="text-muted small">
+                  Procedimientos para identificar y corregir fallos en
+                  aplicaciones, sistemas operativos y errores de programación.
+                </p>
+                <small class="text-primary-custom fw-semibold mt-2">
+                  <i class="fas fa-chevron-down me-1"></i> Ver más detalles
+                </small>
+              </div>
+            </div>
+
+            <!-- Hardware Preventivo -->
+            <div class="col-md-4">
+              <div
+                class="card hover-card h-100 p-4 text-center rounded-4 shadow-sm"
+                data-bs-toggle="collapse"
+                href="#collapseHardware"
+                role="button"
+                aria-expanded="false"
+                aria-controls="collapseHardware"
+                style="cursor: pointer"
+              >
+                <div class="feature-icon-box">
+                  <i class="fas fa-microchip fa-2x"></i>
+                </div>
+                <h4 class="fw-bold mb-3">Hardware Preventivo</h4>
+                <p class="text-muted small">
+                  Guías para prevenir fallos en componentes físicos: limpieza,
+                  ventilación, firmware y revisión de conexiones.
+                </p>
+                <small class="text-primary-custom fw-semibold mt-2">
+                  <i class="fas fa-chevron-down me-1"></i> Ver más detalles
+                </small>
+              </div>
+            </div>
+
+            <!-- Comunidad UPTA -->
+            <div class="col-md-4">
+              <div
+                class="card hover-card h-100 p-4 text-center rounded-4 shadow-sm"
+                data-bs-toggle="collapse"
+                href="#collapseComunidad"
+                role="button"
+                aria-expanded="false"
+                aria-controls="collapseComunidad"
+                style="cursor: pointer"
+              >
+                <div class="feature-icon-box">
+                  <i class="fas fa-users fa-2x"></i>
+                </div>
+                <h4 class="fw-bold mb-3">Comunidad UPTA</h4>
+                <p class="text-muted small">
+                  Recursos diseñados específicamente para las necesidades del
+                  Vicerrectorado Académico de la UPTA.
+                </p>
+                <small class="text-primary-custom fw-semibold mt-2">
+                  <i class="fas fa-chevron-down me-1"></i> Ver más detalles
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contenidos Expandibles -->
+          <div class="row mt-4">
+            <!-- Software Correctivo - Detalles -->
+            <div class="collapse" id="collapseSoftware">
+              <div class="card card-body border-0 shadow-sm rounded-4 mb-3">
+                <h5 class="fw-bold text-primary-custom mb-3">
+                  <i class="fas fa-laptop-code me-2"></i> Guía Completa de
+                  Mantenimiento Correctivo de Software
+                </h5>
+                <div class="row">
+                  <div class="col-md-6">
+                    <h6 class="fw-bold">Procedimientos Principales:</h6>
+                    <ul class="small">
+                      <li>Diagnóstico de errores del sistema operativo</li>
+                      <li>
+                        Actualización de controladores y parches de seguridad
+                      </li>
+                      <li>Limpieza de archivos temporales y registro</li>
+                      <li>Resolución de conflictos entre aplicaciones</li>
+                      <li>Escaneo antivirus y anti-malware</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 class="fw-bold">Herramientas Recomendadas:</h6>
+                    <ul class="small">
+                      <li>CCleaner para limpieza del sistema</li>
+                      <li>Malwarebytes para protección avanzada</li>
+                      <li>Driver Booster para actualización de drivers</li>
+                      <li>Windows Update / Apple Software Update</li>
+                      <li>Herramientas de diagnóstico del sistema</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mt-3 pt-3 border-top">
+                  <a
+                    href="#"
+                    class="btn btn-sm btn-primary-custom page-link"
+                    data-page="introduction"
+                  >
+                    <i class="fas fa-book me-1"></i> Ver guías completas
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hardware Preventivo - Detalles -->
+            <div class="collapse" id="collapseHardware">
+              <div class="card card-body border-0 shadow-sm rounded-4 mb-3">
+                <h5 class="fw-bold text-primary-custom mb-3">
+                  <i class="fas fa-microchip me-2"></i> Guía Completa de
+                  Mantenimiento Preventivo de Hardware
+                </h5>
+                <div class="row">
+                  <div class="col-md-6">
+                    <h6 class="fw-bold">Tareas de Mantenimiento:</h6>
+                    <ul class="small">
+                      <li>Limpieza interna y externa de componentes</li>
+                      <li>Revisión de ventilación y temperaturas</li>
+                      <li>Verificación de conexiones eléctricas</li>
+                      <li>Actualización de firmware/BIOS</li>
+                      <li>Inspección visual de componentes</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 class="fw-bold">Frecuencia Recomendada:</h6>
+                    <ul class="small">
+                      <li><strong>Diario:</strong> Limpieza superficial</li>
+                      <li>
+                        <strong>Mensual:</strong> Verificación de ventiladores
+                      </li>
+                      <li>
+                        <strong>Trimestral:</strong> Limpieza interna profunda
+                      </li>
+                      <li>
+                        <strong>Anual:</strong> Revisión completa y pasta
+                        térmica
+                      </li>
+                      <li>
+                        <strong>Según uso:</strong> Calibración de periféricos
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mt-3 pt-3 border-top">
+                  <a
+                    href="#"
+                    class="btn btn-sm btn-primary-custom page-link"
+                    data-page="introduction"
+                  >
+                    <i class="fas fa-tools me-1"></i> Ver procedimientos
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Comunidad UPTA - Detalles -->
+            <div class="collapse" id="collapseComunidad">
+              <div class="card card-body border-0 shadow-sm rounded-4 mb-3">
+                <h5 class="fw-bold text-primary-custom mb-3">
+                  <i class="fas fa-users me-2"></i> Recursos Específicos para la
+                  Comunidad UPTA
+                </h5>
+                <div class="row">
+                  <div class="col-md-6">
+                    <h6 class="fw-bold">Destinatarios:</h6>
+                    <ul class="small">
+                      <li>Personal del Vicerrectorado Académico</li>
+                      <li>Docentes y personal administrativo</li>
+                      <li>Estudiantes de áreas técnicas</li>
+                      <li>Equipo de soporte TI de la UPTA</li>
+                      <li>Coordinadores de laboratorios</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 class="fw-bold">Recursos Disponibles:</h6>
+                    <ul class="small">
+                      <li>Manuales adaptados a equipos institucionales</li>
+                      <li>Horarios de soporte técnico especializado</li>
+                      <li>Plantillas de reporte de fallas</li>
+                      <li>Guías específicas por departamento</li>
+                      <li>Capacitaciones periódicas</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mt-3 pt-3 border-top">
+                  <a
+                    href="#"
+                    class="btn btn-sm btn-primary-custom page-link"
+                    data-page="community"
+                  >
+                    <i class="fas fa-university me-1"></i> Ir a sección
+                    comunidad
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="model3D" class="page-section">
+        <div class="container py-5">
+          <div class="text-center mb-5">
+            <h2 class="section-title fw-bold text-gradient">
+              Enciclopedia de Mantenimiento de Hardware
+            </h2>
+            <p class="text-muted mx-auto" style="max-width: 900px">
+              El mantenimiento preventivo no es solo limpieza; es asegurar la
+              integridad de tus datos y la estabilidad del sistema. Interactúa
+              con los esquemas 3D para identificar los puntos críticos de
+              intervención.
+            </p>
+          </div>
+
+          <ul
+            class="nav nav-pills nav-justified mb-5 gap-2 p-2 bg-dark rounded-pill shadow-lg border border-secondary"
+            id="projectTabs"
+            role="tablist"
+          >
+            <li class="nav-item">
+              <button
+                class="nav-link active rounded-pill fw-bold"
+                data-bs-toggle="tab"
+                data-bs-target="#cpu-c"
+                type="button"
+              >
+                <i class="fas fa-microchip me-1"></i> CPU
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                class="nav-link rounded-pill fw-bold"
+                data-bs-toggle="tab"
+                data-bs-target="#mother-c"
+                type="button"
+              >
+                <i class="fas fa-layer-group me-1"></i> Placa
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                class="nav-link rounded-pill fw-bold"
+                data-bs-toggle="tab"
+                data-bs-target="#ram-c"
+                type="button"
+              >
+                <i class="fas fa-memory me-1"></i> RAM
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                class="nav-link rounded-pill fw-bold"
+                data-bs-toggle="tab"
+                data-bs-target="#fan-c"
+                type="button"
+              >
+                <i class="fas fa-fan me-1"></i> Cooler
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                class="nav-link rounded-pill fw-bold"
+                data-bs-toggle="tab"
+                data-bs-target="#power-c"
+                type="button"
+              >
+                <i class="fas fa-bolt me-1"></i> Fuente
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                class="nav-link rounded-pill fw-bold"
+                data-bs-toggle="tab"
+                data-bs-target="#storage-c"
+                type="button"
+              >
+                <i class="fas fa-hdd me-1"></i> Disco
+              </button>
+            </li>
+          </ul>
+
+          <div class="tab-content" id="projectTabsContent">
+            <div class="tab-pane fade show active" id="cpu-c" role="tabpanel">
+              <div class="row align-items-center g-4">
+                <div class="col-lg-5">
+                  <h3 class="text-primary-custom fw-bold">
+                    Unidad Central de Procesamiento (CPU)
+                  </h3>
+                  <p class="text-light">
+                    Es el núcleo lógico del computador. El calor es su principal
+                    enemigo: el material térmico entre el procesador y el
+                    disipador se cristaliza con el tiempo, perdiendo su
+                    capacidad de transferencia.
+                  </p>
+                  <p class="text-muted small">
+                    <strong>Protocolo:</strong> Limpie la superficie con alcohol
+                    isopropílico al 99%. Al reensamblar, aplique pasta térmica
+                    de plata o cerámica (no conductora) usando el método de la
+                    "gota central" para evitar burbujas de aire.
+                  </p>
+                  <div
+                    class="alert alert-warning bg-dark border-warning text-warning small py-2"
+                  >
+                    <i class="fas fa-shield-alt me-2"></i> Riesgo de descarga
+                    electrostática (ESD). Use pulsera antiestática.
+                  </div>
+                </div>
+                <div class="col-lg-7">
+                  <div class="viewer-container">
+                    <model-viewer
+                      src="assets/models/cpu.glb"
+                      alt="CPU"
+                      auto-rotate
+                      camera-controls
+                      shadow-intensity="1"
+                      style="width: 100%; height: 420px"
+                    ></model-viewer>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="mother-c" role="tabpanel">
+              <div class="row align-items-center g-4">
+                <div class="col-lg-5">
+                  <h3 class="text-primary-custom fw-bold">
+                    Placa Base (Cerebro Interconectado)
+                  </h3>
+                  <p class="text-light">
+                    La PCB actúa como el sistema nervioso. El polvo acumulado en
+                    los puentes (Northbridge/Southbridge) y VRMs puede actuar
+                    como aislante térmico, causando reinicios inesperados.
+                  </p>
+                  <ul class="text-light small">
+                    <li>
+                      <strong>Limpieza:</strong> Use aire comprimido manteniendo
+                      el bote vertical para evitar expulsar líquido propelente.
+                    </li>
+                    <li>
+                      <strong>Inspección:</strong> Verifique que no existan
+                      condensadores "hinchados" o corrosión por humedad en las
+                      pistas de cobre.
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-7">
+                  <div class="viewer-container">
+                    <model-viewer
+                      src="assets/models/motherboard.glb"
+                      alt="Motherboard"
+                      auto-rotate
+                      camera-controls
+                      shadow-intensity="1"
+                      style="width: 100%; height: 420px"
+                    ></model-viewer>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="ram-c" role="tabpanel">
+              <div class="row align-items-center g-4">
+                <div class="col-lg-5">
+                  <h3 class="text-primary-custom fw-bold">
+                    Memoria RAM (DDR4/DDR5)
+                  </h3>
+                  <p class="text-light">
+                    La memoria volátil maneja los datos en tiempo real. Los
+                    "pantallazos azules" (BSOD) suelen deberse a fallos de
+                    contacto en los bancos de memoria.
+                  </p>
+                  <p class="text-muted small">
+                    <strong>Mantenimiento:</strong> Desmonte los módulos y
+                    limpie los contactos dorados. Si usa un borrador, asegúrese
+                    de que sea libre de grasa y retire todos los residuos. Evite
+                    tocar los chips de memoria para no transferir aceites
+                    naturales de la piel.
+                  </p>
+                </div>
+                <div class="col-lg-7">
+                  <div class="viewer-container">
+                    <model-viewer
+                      src="assets/models/ram.glb"
+                      alt="RAM"
+                      auto-rotate
+                      camera-controls
+                      shadow-intensity="1"
+                      style="width: 100%; height: 420px"
+                    ></model-viewer>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="fan-c" role="tabpanel">
+              <div class="row align-items-center g-4">
+                <div class="col-lg-5">
+                  <h3 class="text-primary-custom fw-bold">
+                    Enfriamiento Activo (Fan & Heatsink)
+                  </h3>
+                  <p class="text-light">
+                    Los ventiladores mueven grandes volúmenes de aire, atrapando
+                    micropartículas en las aspas y el radiador. Un ventilador
+                    obstruido reduce la eficiencia térmica hasta en un 60%.
+                  </p>
+                  <p class="text-muted small">
+                    <strong>Técnica:</strong> Bloquee las aspas con un dedo al
+                    usar aire comprimido; si el ventilador gira a revoluciones
+                    excesivas por el aire, puede generar voltaje inducido y
+                    dañar el puerto de la placa base.
+                  </p>
+                </div>
+                <div class="col-lg-7">
+                  <div class="viewer-container">
+                    <model-viewer
+                      src="assets/models/fancooler.glb"
+                      alt="Cooler"
+                      auto-rotate
+                      camera-controls
+                      shadow-intensity="1"
+                      style="width: 100%; height: 420px"
+                    ></model-viewer>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="power-c" role="tabpanel">
+              <div class="row align-items-center g-4">
+                <div class="col-lg-5">
+                  <h3 class="text-primary-custom fw-bold">
+                    Fuente de Alimentación (PSU)
+                  </h3>
+                  <p class="text-light">
+                    Convierte AC a DC. Es el componente más peligroso debido a
+                    sus capacitores electrolíticos que almacenan energía de alta
+                    tensión incluso días después de desconectada.
+                  </p>
+                  <div class="p-3 bg-dark border border-danger rounded">
+                    <strong class="text-danger small">SEGURIDAD:</strong> Limpie
+                    solo de forma externa. Si el ventilador interno falla, se
+                    recomienda el reemplazo total de la unidad o intervención
+                    profesional calificada.
+                  </div>
+                </div>
+                <div class="col-lg-7">
+                  <div class="viewer-container">
+                    <model-viewer
+                      src="assets/models/powersupply.glb"
+                      alt="Power Supply"
+                      auto-rotate
+                      camera-controls
+                      shadow-intensity="1"
+                      style="width: 100%; height: 420px"
+                    ></model-viewer>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="storage-c" role="tabpanel">
+              <div class="row align-items-center g-4">
+                <div class="col-lg-5">
+                  <h3 class="text-primary-custom fw-bold">
+                    Almacenamiento (SSD / NVMe)
+                  </h3>
+                  <p class="text-light">
+                    A diferencia de los discos mecánicos, los SSD no tienen
+                    partes móviles pero sufren degradación por calor (throttling
+                    de escritura). El mantenimiento es preventivo a nivel de
+                    conectores.
+                  </p>
+                  <p class="text-muted small">
+                    <strong>Acción:</strong> Verifique que los disipadores
+                    térmicos de las unidades M.2 tengan el
+                    <em>thermal pad</em> en buen estado y bien posicionado sobre
+                    el controlador.
+                  </p>
+                </div>
+                <div class="col-lg-7">
+                  <div class="viewer-container">
+                    <model-viewer
+                      src="assets/models/storage.glb"
+                      alt="Storage"
+                      auto-rotate
+                      camera-controls
+                      shadow-intensity="1"
+                      style="width: 100%; height: 420px"
+                    ></model-viewer>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="introduction" class="page-section">
+        <div class="container py-5">
+          <div class="text-center mb-5">
+            <span class="text-primary-custom fw-bold text-uppercase ls-2 small"
+              >Guías Prácticas</span
+            >
+            <h2 class="section-title d-block">Manual de Procedimientos</h2>
+            <p class="text-muted mx-auto" style="max-width: 700px">
+              Guías detalladas para identificar problemas, aplicar soluciones y
+              prevenir fallos futuros en equipos informáticos.
+            </p>
+          </div>
+
+          <!-- Sección 1: Identificar Problemas Comunes -->
+          <div class="card border-0 shadow-lg rounded-4 mb-5">
+            <div
+              class="card-header bg-primary-custom text-white py-4 rounded-top-4"
+            >
+              <h3 class="mb-0 fw-bold">
+                <i class="fas fa-search me-2"></i> 1. Identificar Problemas
+                Comunes
+              </h3>
+              <p class="mb-0 mt-2 opacity-75">
+                Reconocimiento y diagnóstico de fallas recurrentes en hardware y
+                software
+              </p>
+            </div>
+            <div class="card-body p-4 p-lg-5">
+              <div class="row g-4">
+                <!-- Problemas de Hardware -->
+                <div class="col-lg-6">
+                  <div class="card problem-card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                      <h5 class="fw-bold text-danger mb-3">
+                        <i class="fas fa-microchip me-2"></i> Problemas de
+                        Hardware Comunes
+                      </h5>
+                      <div class="mb-3">
+                        <h6 class="fw-bold text-danger mb-2">
+                          Sobrecalentamiento
+                        </h6>
+                        <ul class="small">
+                          <li>Ventiladores ruidosos o detenidos</li>
+                          <li>Apagados inesperados del sistema</li>
+                          <li>Rendimiento reducido (thermal throttling)</li>
+                          <li>Reinicios automáticos frecuentes</li>
+                        </ul>
+                      </div>
+                      <div class="mb-3">
+                        <h6 class="fw-bold text-danger mb-2">
+                          Fallos de Almacenamiento
+                        </h6>
+                        <ul class="small">
+                          <li>Sonidos de clic en discos duros</li>
+                          <li>Tiempos de carga excesivos</li>
+                          <li>Archivos corruptos o inaccesibles</li>
+                          <li>Errores SMART en diagnóstico</li>
+                        </ul>
+                      </div>
+                      <div class="mb-3">
+                        <h6 class="fw-bold text-danger mb-2">
+                          Problemas de Memoria
+                        </h6>
+                        <ul class="small">
+                          <li>Pantallas azules (BSOD) frecuentes</li>
+                          <li>Aplicaciones que se cierran inesperadamente</li>
+                          <li>Rendimiento lento con múltiples programas</li>
+                          <li>Errores de memoria en diagnósticos</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Problemas de Software -->
+                <div class="col-lg-6">
+                  <div class="card problem-card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                      <h5 class="fw-bold text-danger mb-3">
+                        <i class="fas fa-laptop-code me-2"></i> Problemas de
+                        Software Comunes
+                      </h5>
+                      <div class="mb-3">
+                        <h6 class="fw-bold text-danger mb-2">
+                          Rendimiento del Sistema
+                        </h6>
+                        <ul class="small">
+                          <li>Tiempo de inicio excesivo (>2 minutos)</li>
+                          <li>Alto uso de CPU en reposo (>30%)</li>
+                          <li>Consumo excesivo de memoria RAM</li>
+                          <li>Congelamientos frecuentes del sistema</li>
+                        </ul>
+                      </div>
+                      <div class="mb-3">
+                        <h6 class="fw-bold text-danger mb-2">
+                          Errores de Aplicaciones
+                        </h6>
+                        <ul class="small">
+                          <li>Aplicaciones que no inician</li>
+                          <li>Errores de compatibilidad</li>
+                          <li>Fallas al instalar actualizaciones</li>
+                          <li>Conflictos entre programas</li>
+                        </ul>
+                      </div>
+                      <div class="mb-3">
+                        <h6 class="fw-bold text-danger mb-2">
+                          Problemas de Seguridad
+                        </h6>
+                        <ul class="small">
+                          <li>Antivirus desactualizado o inactivo</li>
+                          <li>Comportamiento sospechoso del sistema</li>
+                          <li>Pop-ups no deseados constantes</li>
+                          <li>Acceso no autorizado a archivos</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-4 border-top">
+                <h6 class="fw-bold text-primary-custom mb-3">
+                  <i class="fas fa-tools me-2"></i> Herramientas de Diagnóstico
+                  Recomendadas
+                </h6>
+                <div class="row">
+                  <div class="col-md-6">
+                    <ul class="tool-list small">
+                      <li>
+                        <strong>CrystalDiskInfo:</strong> Monitoreo de salud de
+                        discos duros
+                      </li>
+                      <li>
+                        <strong>HWMonitor:</strong> Temperaturas y voltajes del
+                        sistema
+                      </li>
+                      <li>
+                        <strong>MemTest86:</strong> Pruebas exhaustivas de
+                        memoria RAM
+                      </li>
+                      <li>
+                        <strong>SpeedFan:</strong> Control de ventiladores y
+                        temperaturas
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="tool-list small">
+                      <li>
+                        <strong>Process Explorer:</strong> Análisis detallado de
+                        procesos
+                      </li>
+                      <li>
+                        <strong>CCleaner:</strong> Limpieza y optimización del
+                        sistema
+                      </li>
+                      <li>
+                        <strong>Malwarebytes:</strong> Detección de malware
+                        avanzado
+                      </li>
+                      <li>
+                        <strong>Windows Event Viewer:</strong> Registros del
+                        sistema
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sección 2: Soluciones Paso a Paso -->
+          <div class="card border-0 shadow-lg rounded-4 mb-5">
+            <div class="card-header bg-success text-white py-4 rounded-top-4">
+              <h3 class="mb-0 fw-bold">
+                <i class="fas fa-list-ol me-2"></i> 2. Soluciones Paso a Paso
+              </h3>
+              <p class="mb-0 mt-2 opacity-75">
+                Procedimientos detallados para resolver problemas comunes de
+                hardware y software
+              </p>
+            </div>
+            <div class="card-body p-4 p-lg-5">
+              <div class="row g-4 mb-4">
+                <!-- Hardware Solutions -->
+                <div class="col-lg-6">
+                  <h5 class="fw-bold text-success mb-4">
+                    <i class="fas fa-tools me-2"></i> Soluciones de Hardware
+                  </h5>
+
+                  <div class="card step-card mb-3 border-0 shadow-sm">
+                    <div class="card-body">
+                      <div class="d-flex align-items-start">
+                        <div class="step-number">1</div>
+                        <div>
+                          <h6 class="fw-bold mb-2">
+                            Limpieza de Componentes Internos
+                          </h6>
+                          <p class="small mb-2">
+                            <strong>Herramientas necesarias:</strong> Aire
+                            comprimido, brochas suaves, alcohol isopropílico,
+                            paños de microfibra.
+                          </p>
+                          <ol class="small ps-3 mb-0">
+                            <li>
+                              Desconectar el equipo de la corriente eléctrica
+                            </li>
+                            <li>
+                              Abrir la carcasa siguiendo las instrucciones del
+                              fabricante
+                            </li>
+                            <li>
+                              Usar aire comprimido para remover polvo de
+                              ventiladores y heatsinks
+                            </li>
+                            <li>
+                              Limpiar contactos de memoria y tarjetas de
+                              expansión
+                            </li>
+                            <li>
+                              Verificar que todos los cables estén bien
+                              conectados
+                            </li>
+                          </ol>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card step-card mb-3 border-0 shadow-sm">
+                    <div class="card-body">
+                      <div class="d-flex align-items-start">
+                        <div class="step-number">2</div>
+                        <div>
+                          <h6 class="fw-bold mb-2">
+                            Reemplazo de Pasta Térmica
+                          </h6>
+                          <p class="small mb-2">
+                            <strong>Frecuencia:</strong> Cada 2-3 años o cuando
+                            las temperaturas sean altas.
+                          </p>
+                          <ol class="small ps-3 mb-0">
+                            <li>
+                              Retirar cuidadosamente el disipador del procesador
+                            </li>
+                            <li>
+                              Limpiar la pasta térmica vieja con alcohol
+                              isopropílico
+                            </li>
+                            <li>
+                              Aplicar una pequeña cantidad de pasta nueva en el
+                              centro del procesador
+                            </li>
+                            <li>
+                              Volver a colocar el disipador con presión uniforme
+                            </li>
+                            <li>
+                              Verificar temperaturas después del procedimiento
+                            </li>
+                          </ol>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Software Solutions -->
+                <div class="col-lg-6">
+                  <h5 class="fw-bold text-success mb-4">
+                    <i class="fas fa-code me-2"></i> Soluciones de Software
+                  </h5>
+
+                  <div class="card step-card mb-3 border-0 shadow-sm">
+                    <div class="card-body">
+                      <div class="d-flex align-items-start">
+                        <div class="step-number">1</div>
+                        <div>
+                          <h6 class="fw-bold mb-2">
+                            Optimización de Inicio del Sistema
+                          </h6>
+                          <p class="small mb-2">
+                            <strong>Tiempo estimado:</strong> 10-15 minutos.
+                          </p>
+                          <ol class="small ps-3 mb-0">
+                            <li>
+                              Presionar Ctrl + Shift + Esc para abrir el
+                              Administrador de tareas
+                            </li>
+                            <li>Ir a la pestaña "Inicio"</li>
+                            <li>
+                              Deshabilitar programas no esenciales que inicien
+                              con Windows
+                            </li>
+                            <li>
+                              Verificar servicios innecesarios en services.msc
+                            </li>
+                            <li>Reiniciar el equipo para aplicar cambios</li>
+                          </ol>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card step-card mb-3 border-0 shadow-sm">
+                    <div class="card-body">
+                      <div class="d-flex align-items-start">
+                        <div class="step-number">2</div>
+                        <div>
+                          <h6 class="fw-bold mb-2">
+                            Limpieza y Desfragmentación de Disco
+                          </h6>
+                          <p class="small mb-2">
+                            <strong>Frecuencia:</strong> Mensual para HDD, no
+                            necesario para SSD.
+                          </p>
+                          <ol class="small ps-3 mb-0">
+                            <li>
+                              Ejecutar "Limpiar disco" desde Propiedades del
+                              disco
+                            </li>
+                            <li>
+                              Usar CCleaner para limpieza de registro y archivos
+                              temporales
+                            </li>
+                            <li>
+                              Ejecutar desfragmentador de disco (solo para HDD)
+                            </li>
+                            <li>
+                              Verificar espacio libre disponible (>15% del
+                              total)
+                            </li>
+                            <li>
+                              Configurar tareas programadas para mantenimiento
+                              regular
+                            </li>
+                          </ol>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert alert-info mt-4">
+                <h6 class="fw-bold">
+                  <i class="fas fa-lightbulb me-2"></i> Consejos Importantes
+                </h6>
+                <ul class="mb-0 small">
+                  <li>
+                    Siempre crear respaldo de datos importantes antes de
+                    realizar cualquier procedimiento
+                  </li>
+                  <li>
+                    Documentar cada paso realizado para futuras referencias
+                  </li>
+                  <li>
+                    Probar soluciones en orden de complejidad (de lo simple a lo
+                    complejo)
+                  </li>
+                  <li>
+                    Si no estás seguro, consultar con personal técnico
+                    especializado
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sección 3: Prevenir Fallos Futuros -->
+          <div class="card border-0 shadow-lg rounded-4">
+            <div class="card-header bg-warning text-dark py-4 rounded-top-4">
+              <h3 class="mb-0 fw-bold">
+                <i class="fas fa-shield-alt me-2"></i> 3. Prevenir Fallos
+                Futuros
+              </h3>
+              <p class="mb-0 mt-2 opacity-75">
+                Estrategias y buenas prácticas para mantener equipos en óptimas
+                condiciones
+              </p>
+            </div>
+            <div class="card-body p-4 p-lg-5">
+              <div class="row g-4">
+                <!-- Mantenimiento Preventivo Programado -->
+                <div class="col-lg-6">
+                  <div class="card prevention-card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                      <h5 class="fw-bold text-success mb-4">
+                        <i class="fas fa-calendar-check me-2"></i> Calendario de
+                        Mantenimiento
+                      </h5>
+
+                      <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Diario</h6>
+                        <ul class="small">
+                          <li>
+                            <span class="badge bg-success badge-custom"
+                              >Software</span
+                            >
+                            Verificar actualizaciones del sistema
+                          </li>
+                          <li>
+                            <span class="badge bg-primary badge-custom"
+                              >Hardware</span
+                            >
+                            Limpieza superficial con paño seco
+                          </li>
+                          <li>
+                            <span
+                              class="badge bg-warning text-dark badge-custom"
+                              >Seguridad</span
+                            >
+                            Revisar estado del antivirus
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Semanal</h6>
+                        <ul class="small">
+                          <li>
+                            <span class="badge bg-success badge-custom"
+                              >Software</span
+                            >
+                            Limpieza de archivos temporales
+                          </li>
+                          <li>
+                            <span class="badge bg-primary badge-custom"
+                              >Hardware</span
+                            >
+                            Verificar temperaturas del sistema
+                          </li>
+                          <li>
+                            <span class="badge bg-info badge-custom"
+                              >Backup</span
+                            >
+                            Respaldos incrementales de datos
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Mensual</h6>
+                        <ul class="small">
+                          <li>
+                            <span class="badge bg-success badge-custom"
+                              >Software</span
+                            >
+                            Desfragmentación de discos HDD
+                          </li>
+                          <li>
+                            <span class="badge bg-primary badge-custom"
+                              >Hardware</span
+                            >
+                            Limpieza de ventiladores externos
+                          </li>
+                          <li>
+                            <span class="badge bg-danger badge-custom"
+                              >Seguridad</span
+                            >
+                            Escaneo completo del sistema
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h6 class="fw-bold mb-3">Anual</h6>
+                        <ul class="small">
+                          <li>
+                            <span class="badge bg-primary badge-custom"
+                              >Hardware</span
+                            >
+                            Limpieza interna completa
+                          </li>
+                          <li>
+                            <span class="badge bg-primary badge-custom"
+                              >Hardware</span
+                            >
+                            Revisión y cambio de pasta térmica
+                          </li>
+                          <li>
+                            <span class="badge bg-dark badge-custom"
+                              >General</span
+                            >
+                            Auditoría completa del equipo
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Mejores Prácticas -->
+                <div class="col-lg-6">
+                  <div class="card prevention-card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                      <h5 class="fw-bold text-success mb-4">
+                        <i class="fas fa-star me-2"></i> Mejores Prácticas de
+                        Mantenimiento
+                      </h5>
+
+                      <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Ambiente de Trabajo</h6>
+                        <ul class="small">
+                          <li>
+                            <strong>Temperatura controlada:</strong> Mantener
+                            entre 18°C y 24°C
+                          </li>
+                          <li>
+                            <strong>Humedad adecuada:</strong> Entre 40% y 60%
+                            de humedad relativa
+                          </li>
+                          <li>
+                            <strong>Ventilación adecuada:</strong> 15-20 cm de
+                            espacio libre alrededor del equipo
+                          </li>
+                          <li>
+                            <strong>Protección eléctrica:</strong> Usar
+                            reguladores de voltaje o UPS
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Cuidado de Componentes</h6>
+                        <ul class="small">
+                          <li>
+                            <strong>Discos duros:</strong> Evitar movimientos
+                            bruscos durante operación
+                          </li>
+                          <li>
+                            <strong>Pantallas:</strong> Usar protectores de
+                            pantalla y limpiar con productos específicos
+                          </li>
+                          <li>
+                            <strong>Teclados:</strong> Limpieza regular con aire
+                            comprimido
+                          </li>
+                          <li>
+                            <strong>Baterías:</strong> Evitar ciclos de carga
+                            completos en equipos portátiles
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Seguridad Informática</h6>
+                        <ul class="small">
+                          <li>
+                            <strong>Actualizaciones:</strong> Mantener sistema
+                            operativo y aplicaciones actualizadas
+                          </li>
+                          <li>
+                            <strong>Antivirus:</strong> Software activo y con
+                            definiciones actualizadas
+                          </li>
+                          <li>
+                            <strong>Firewall:</strong> Habilitado y configurado
+                            correctamente
+                          </li>
+                          <li>
+                            <strong>Backups:</strong> Estrategia 3-2-1 (3
+                            copias, 2 medios diferentes, 1 fuera del sitio)
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="alert alert-warning small">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>Importante:</strong> Documentar todas las
+                        intervenciones realizadas en una bitácora de
+                        mantenimiento para seguimiento histórico.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-4 border-top">
+                <div class="row align-items-center">
+                  <div class="col-md-8">
+                    <h6 class="fw-bold text-primary-custom mb-2">
+                      <i class="fas fa-file-alt me-2"></i> Plantillas y Recursos
+                      Descargables
+                    </h6>
+                    <p class="small mb-0">
+                      Descarga nuestras plantillas para llevar un control
+                      efectivo del mantenimiento de tus equipos.
+                    </p>
+                  </div>
+                  <div class="col-md-4 text-end">
+                    <button class="btn btn-primary-custom btn-sm">
+                      <i class="fas fa-download me-1"></i> Descargar Plantillas
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="community" class="page-section">
+        <div class="container py-5">
+          <div class="text-center mb-5">
+            <span class="text-primary-custom fw-bold text-uppercase ls-2 small"
+              >Nuestra Gente</span
+            >
+            <h2 class="section-title d-block">Comunidad UPTA</h2>
+          </div>
+
+          <div class="row align-items-center mb-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+              <img
+                src="assets/img/comunidad.png"
+                alt="Miembros UPTA"
+                class="img-fluid rounded-4 shadow-lg w-100 object-fit-cover"
+                style="min-height: 300px"
+              />
+            </div>
+            <div class="col-lg-6">
+              <div class="card border-0 bg-transparent">
+                <div class="card-body p-0 ps-lg-4">
+                  <h3 class="fw-bold mb-3">Destinatarios y Contexto</h3>
+                  <p class="text-muted mb-4">
+                    Este manual está diseñado específicamente para la comunidad
+                    del <strong>Vicerrectorado Académico de la UPTA</strong>,
+                    teniendo en cuenta sus necesidades particulares, recursos
+                    disponibles y nivel técnico.
+                  </p>
+
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <h5 class="fw-bold text-primary-custom">
+                        <i class="fas fa-id-card-alt me-2"></i>Características
+                      </h5>
+                      <ul class="small text-muted ps-3">
+                        <li>Usuarios con distintos niveles técnicos.</li>
+                        <li>Equipos heterogéneos.</li>
+                        <li>Necesidad de productividad.</li>
+                        <li>Seguridad crítica.</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <h5 class="fw-bold text-success">
+                        <i class="fas fa-chart-line me-2"></i>Beneficios
+                      </h5>
+                      <ul class="small text-muted ps-3">
+                        <li>Reducción de inactividad.</li>
+                        <li>Prolongación de vida útil.</li>
+                        <li>Mejora en seguridad.</li>
+                        <li>Empoderamiento de usuarios.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card rounded-4 border-0 shadow p-4">
+            <h4 class="mb-4 text-center fw-bold">
+              <i class="fas fa-hands-helping me-2 text-primary-custom"></i>
+              Recursos Adicionales
+            </h4>
+            <div class="row g-4 text-center">
+              <!-- Documentación PDF -->
+              <div class="col-md-6">
+                <div
+                  class="p-3 hover-card rounded-3 h-100"
+                  data-bs-toggle="collapse"
+                  href="#collapsePdf"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="collapsePdf"
+                  style="cursor: pointer"
+                >
+                  <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
+                  <h6>Documentación PDF</h6>
+                  <p class="small text-muted mb-0">
+                    Guías descargables para consulta offline.
+                  </p>
+                  <small class="text-primary-custom fw-semibold mt-2 d-block">
+                    <i class="fas fa-chevron-down me-1"></i> Ver recursos
+                    disponibles
+                  </small>
+                </div>
+              </div>
+
+              <!-- Foro de Soporte -->
+              <div class="col-md-6">
+                <div
+                  class="p-3 hover-card rounded-3 h-100"
+                  data-bs-toggle="collapse"
+                  href="#collapseForo"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="collapseForo"
+                  style="cursor: pointer"
+                >
+                  <i class="fas fa-comments fa-3x text-success mb-3"></i>
+                  <h6>FAQ</h6>
+                  <p class="small text-muted mb-0">
+                    Preguntas frecuentes y soluciones rápidas para problemas comunes.
+                  </p>
+                  <small class="text-primary-custom fw-semibold mt-2 d-block">
+                    <i class="fas fa-chevron-down me-1"></i> Ver preguntas frecuentes
+                  </small>
+                </div>
+              </div>
+            </div>
+
+              <div class="mt-4">
+                <div class="collapse" id="collapsePdf">
+                  <div class="card card-body border-0 shadow-sm rounded-4 mb-3">
+                    <h5 class="fw-bold text-danger mb-3">
+                      <i class="fas fa-file-pdf me-2"></i> Documentación PDF
+                    </h5>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h6 class="fw-bold">Proyecto Socio Tecnológico:</h6>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item d-flex justify-content-between align-items-center border-0 py-2 px-0">
+                            <span><i class="fas fa-file-pdf text-danger me-2"></i> Informe</span>
+                            <a href="docs/informe.pdf" download="Informe_Proyecto.pdf" class="btn btn-sm btn-outline-danger">
+                              <i class="fas fa-download"></i> Descargar
+                            </a>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center border-0 py-2 px-0">
+                            <span><i class="fas fa-file-pdf text-danger me-2"></i> Diapositivas</span>
+                            <a href="docs/Diapositivas.pdf" download="Diapositivas.pdf" class="btn btn-sm btn-outline-danger">
+                              <i class="fas fa-download"></i> Descargar
+                            </a>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center border-0 py-2 px-0">
+                            <span><i class="fas fa-file-pdf text-danger me-2"></i> Fichas Técnicas</span>
+                            <a href="docs/Fichas Técnicas.pdf" download="Fichas_Tecnicas.pdf" class="btn btn-sm btn-outline-danger">
+                              <i class="fas fa-download"></i> Descargar
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="col-md-6">
+                        <h6 class="fw-bold">Referencias Electrónicas:</h6>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item d-flex justify-content-between align-items-center border-0 py-2 px-0">
+                            <span><i class="fas fa-file-pdf text-danger me-2"></i> Desmontar una Computadora</span>
+                            <a href="docs/Desmontar una Computadora (Pasos).pdf" download class="btn btn-sm btn-outline-danger">
+                              <i class="fas fa-download"></i> Descargar
+                            </a>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center border-0 py-2 px-0">
+                            <span><i class="fas fa-file-pdf text-danger me-2"></i> Manual de Armado y Reparación</span>
+                            <a href="docs/Manual de Armado y Reparación de PC.pdf" download class="btn btn-sm btn-outline-danger">
+                              <i class="fas fa-download"></i> Descargar
+                            </a>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center border-0 py-2 px-0">
+                            <span><i class="fas fa-file-pdf text-danger me-2"></i> Proceso de Desarme</span>
+                            <a href="docs/Proceso de Desarme de una PC.pdf" download class="btn btn-sm btn-outline-danger">
+                              <i class="fas fa-download"></i> Descargar
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="alert alert-info mt-3 small">
+                      <i class="fas fa-info-circle me-2"></i>
+                      Todos los documentos están en formato PDF y pueden visualizarse en cualquier dispositivo.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Foro de Soporte - Detalles -->
+<div class="collapse" id="collapseForo">
+  <div class="card card-body border-0 shadow-sm rounded-4 mb-3">
+    <h5 class="fw-bold text-success mb-3">
+      <i class="fas fa-tools me-2"></i> FAQ: Mantenimiento Preventivo
+    </h5>
+    <p class="text-muted small mb-4">
+      Respuestas rápidas sobre los procedimientos de limpieza y cuidado de equipos CPU.
+    </p>
+
+    <div class="accordion accordion-flush" id="accordionMaintenance">
+      
+      <div class="accordion-item border-0 mb-2 shadow-sm rounded-3">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed rounded-3 small fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#maint1">
+            ¿Cada cuánto tiempo se debe realizar el mantenimiento?
+          </button>
+        </h2>
+        <div id="maint1" class="accordion-collapse collapse" data-bs-parent="#accordionMaintenance">
+          <div class="accordion-body text-muted small">
+            En entornos de oficina estándar, se recomienda cada 6 meses. Sin embargo, en áreas con mucho polvo o alta rotación de personal (como laboratorios), lo ideal es cada 3 o 4 meses.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item border-0 mb-2 shadow-sm rounded-3">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed rounded-3 small fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#maint2">
+            ¿Es obligatorio cambiar la pasta térmica en cada mantenimiento?
+          </button>
+        </h2>
+        <div id="maint2" class="accordion-collapse collapse" data-bs-parent="#accordionMaintenance">
+          <div class="accordion-body text-muted small">
+            No siempre. Si las temperaturas son estables, se puede cambiar cada 1 o 2 años. Solo es obligatorio si se retira el disipador o si se nota que la pasta está seca y quebradiza.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item border-0 mb-2 shadow-sm rounded-3">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed rounded-3 small fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#maint3">
+            ¿Qué precauciones debo tomar con la estática?
+          </button>
+        </h2>
+        <div id="maint3" class="accordion-collapse collapse" data-bs-parent="#accordionMaintenance">
+          <div class="accordion-body text-muted small">
+            Es vital usar una pulsera antiestática conectada a tierra o tocar una superficie metálica antes de manipular componentes. Evita trabajar sobre alfombras o usar ropa de lana durante el proceso.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item border-0 mb-2 shadow-sm rounded-3">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed rounded-3 small fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#maint4">
+            ¿Puedo limpiar la tarjeta madre con alcohol común?
+          </button>
+        </h2>
+        <div id="maint4" class="accordion-collapse collapse" data-bs-parent="#accordionMaintenance">
+          <div class="accordion-body text-muted small">
+            No. Debe utilizarse únicamente alcohol isopropílico (99% pureza), ya que se evapora rápidamente y no contiene agua, lo que evita cortocircuitos o corrosión en los circuitos.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item border-0 mb-2 shadow-sm rounded-3">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed rounded-3 small fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#maint5">
+            ¿Cómo se deben limpiar los ventiladores (fans)?
+          </button>
+        </h2>
+        <div id="maint5" class="accordion-collapse collapse" data-bs-parent="#accordionMaintenance">
+          <div class="accordion-body text-muted small">
+            Al usar aire comprimido, siempre sujeta las aspas con un dedo o un palillo. Si permites que giren a alta velocidad por el aire, pueden generar electricidad (efecto dinamo) y dañar la placa base.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="alert alert-warning mt-4 small">
+      <i class="fas fa-exclamation-triangle me-2"></i>
+      <strong>Importante:</strong> Siempre desconecta el cable de poder y presiona el botón de encendido por 5 segundos para drenar la energía residual antes de abrir el equipo.
+    </div>
+  </div>
+</div>
+      </section>
+
+      <section id="components" class="page-section">
+        <div class="container py-5">
+          <div class="text-center mb-5">
+            <span class="text-primary-custom fw-bold text-uppercase ls-2 small"
+              >Estructura</span
+            >
+            <h2 class="section-title d-block">Componentes del Sistema</h2>
+          </div>
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="card h-100 border-0 shadow-sm rounded-4">
+                <div class="card-header bg-transparent border-0 pt-4 px-4 pb-0">
+                  <h4 class="fw-bold text-primary-custom">
+                    <i class="fas fa-desktop me-2"></i> Hardware
+                  </h4>
+                  <p class="small text-muted">Componentes Físicos</p>
+                </div>
+                <div class="card-body p-4">
+                  <ul class="list-group list-group-flush rounded-3">
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center py-3"
+                    >
+                      <span
+                        ><i class="fas fa-microchip w-25px text-muted me-2"></i>
+                        CPU</span
+                      >
+                      <span class="badge bg-secondary rounded-pill">Pentium(R) Dual-Core</span>
+                    </li>
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center py-3"
+                    >
+                      <span
+                        ><i class="fas fa-memory w-25px text-muted me-2"></i>
+                        RAM</span
+                      >
+                      <span class="badge bg-secondary rounded-pill"
+                        >3 GB</span
+                      >
+                    </li>
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center py-3"
+                    >
+                      <span
+                        ><i class="fas fa-hdd w-25px text-muted me-2"></i>
+                        SSD</span
+                      >
+                      <span class="badge bg-secondary rounded-pill"
+                        >120 GB</span
+                      >
+                    </li>
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center py-3"
+                    >
+                      <span
+                        ><i class="fas fa-plug w-25px text-muted me-2"></i>
+                        Fuentes de alimentación</span
+                      >
+                      <span class="badge bg-secondary rounded-pill">OEM</span>
+                    </li>
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center py-3"
+                    >
+                      <span
+                        ><i class="fas fa-keyboard w-25px text-muted me-2"></i>
+                        Periféricos</span
+                      >
+                      <span class="badge bg-secondary rounded-pill">Mouse y Teclado</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card h-100 border-0 shadow-sm rounded-4">
+                <div class="card-header bg-transparent border-0 pt-4 px-4 pb-0">
+                  <h4 class="fw-bold text-success">
+                    <i class="fas fa-code me-2"></i> Software
+                  </h4>
+                  <p class="small text-muted">Componentes Lógicos</p>
+                </div>
+                <div class="card-body p-4">
+                  <ul class="list-group list-group-flush rounded-3">
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center py-3"
+                    >
+                      <span
+                        ><i class="fab fa-windows w-25px text-muted me-2"></i>
+                        Sistemas operativos</span
+                      >
+                      <span class="badge bg-success rounded-pill">Windows 10</span>
+                    </li>
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center py-3"
+                    >
+                      <span
+                        ><i class="fas fa-file-word w-25px text-muted me-2"></i>
+                        Productividad</span
+                      >
+                      <span class="badge bg-success rounded-pill">Microsoft Office</span>
+                    </li>
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center py-3"
+                    >
+                      <span
+                        ><i class="fab fa-chrome w-25px text-muted me-2"></i>
+                        Navegadores web</span
+                      >
+                      <span class="badge bg-success rounded-pill">Google Chrome y Microsoft Edge</span>
+                    </li>
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center py-3"
+                    >
+                      <span
+                        ><i
+                          class="fas fa-shield-virus w-25px text-muted me-2"
+                        ></i>
+                        Seguridad</span
+                      >
+                      <span class="badge bg-success rounded-pill"
+                        >Windows Defender y Firewall</span
+                      >
+                    </li>
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center py-3"
+                    >
+                      <span
+                        ><i class="fas fa-cogs w-25px text-muted me-2"></i>
+                        Controladores</span
+                      >
+                      <span class="badge bg-success rounded-pill">Actualizados</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+      </section>
+
+      <section id="developer" class="page-section">
+        <div class="container py-5">
+          <div class="text-center mb-5">
+            <span class="text-primary-custom fw-bold text-uppercase ls-2 small"
+              >Créditos</span
+            >
+            <h2 class="section-title d-block">Equipo Desarrollador</h2>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div
+                  class="bg-primary-custom h-100px"
+                  style="height: 120px"
+                ></div>
+                <div class="card-body text-center mt-n5 pt-0 px-5 pb-5">
+                  <div class="position-relative d-inline-block mt-n5 mb-4">
+                    <img
+                      src="assets/img/ana_borges.jpg"
+                      alt="Ana Borges"
+                      class="rounded-circle developer-img shadow-lg"
+                    />
+                  </div>
+
+                  <h3 class="fw-bold mb-1">Ana Borges</h3>
+                  <p class="text-primary-custom fw-semibold mb-3">
+                    C.I: 32.318.303
+                  </p>
+
+                  <p class="text-muted mb-4 lh-lg">
+                    Estudiante con experiencia en
+                    <strong>desarrollo web y administración de sistemas</strong
+                    >, siendo la creadora de este manual técnico interactivo
+                    para proporcionar una guía completa y accesible para la
+                    comunidad del Vicerrectorado Académico.
+                  </p>
+
+                  <hr class="my-4 opacity-10" />
+
+                  <div class="row text-start g-4">
+                    <div class="col-md-6 border-end-md">
+                      <h5 class="fw-bold mb-3 text-primary-custom">
+                        Habilidades Técnicas
+                      </h5>
+                      <ul class="list-unstyled">
+                        <li class="mb-2">
+                          <i class="fas fa-code text-success me-2"></i>
+                          Desarrollo Web (HTML/CSS/JS)
+                        </li>
+                        <li class="mb-2">
+                          <i class="fas fa-server text-success me-2"></i>
+                          Administración de Sistemas
+                        </li>
+                        <li class="mb-2">
+                          <i class="fas fa-user-shield text-success me-2"></i>
+                          Ciberseguridad / Soporte
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6 ps-md-4">
+                      <h5 class="fw-bold mb-3 text-primary-custom">Contacto</h5>
+                      <ul class="list-unstyled">
+                        <li class="mb-2">
+                          <a
+                            href="mailto:anasaraiborges@gmail.com"
+                            class="text-decoration-none text-primary"
+                          >
+                            <i class="fas fa-envelope me-2"></i>
+                            anasaraiborges@gmail.com
+                          </a>
+                        </li>
+                        <li class="mb-2">
+                          <a href="#" class="text-decoration-none text-primary">
+                            <i class="fab fa-github me-2"></i> GitHub Profile
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="py-5 mt-auto bg-dark text-white text-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <img
+              src="./assets/img/upta_logo.png"
+              alt="Logo UPTA"
+              class="mb-3 bg-white rounded p-1"
+              style="height: 60px"
+            />
+            <p class="mb-1 fw-light">&copy; 2026 Manual Técnico Interactivo.</p>
+            <p class="small text-white-50">Todos los derechos reservados.</p>
+            <div class="border-top border-secondary my-3 w-50 mx-auto"></div>
+            <p class="small mb-0">
+              Diseñado y desarrollado por
+              <span class="text-primary-custom fw-bold">Ana Borges</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const body = document.body;
+        const themeToggleBtn = document.getElementById("themeToggle");
+        const themeIcon = themeToggleBtn.querySelector("i");
+        const links = document.querySelectorAll(".page-link");
+        const sections = document.querySelectorAll(".page-section");
+        const navbarCollapse = document.querySelector(".navbar-collapse");
+
+        if (body.classList.contains("dark-mode")) {
+          themeIcon.classList.replace("fa-moon", "fa-sun");
+        }
+
+        themeToggleBtn.addEventListener("click", function () {
+          body.classList.toggle("dark-mode");
+
+          if (body.classList.contains("dark-mode")) {
+            themeIcon.classList.replace("fa-moon", "fa-sun");
+          } else {
+            themeIcon.classList.replace("fa-sun", "fa-moon");
+          }
+        });
+
+        links.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            const targetId = this.getAttribute("data-page");
+
+            if (targetId) {
+              e.preventDefault();
+
+              document
+                .querySelectorAll(".nav-link")
+                .forEach((nav) => nav.classList.remove("active"));
+              if (this.classList.contains("nav-link")) {
+                this.classList.add("active");
+              }
+
+              sections.forEach((section) => {
+                section.classList.remove("active");
+              });
+
+              const targetSection = document.getElementById(targetId);
+              if (targetSection) {
+                targetSection.classList.add("active");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+
+              if (
+                window.innerWidth < 992 &&
+                navbarCollapse.classList.contains("show")
+              ) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                  toggle: true,
+                });
+                bsCollapse.hide();
+              }
+            }
+          });
+        });
+
+        // Animación para los íconos de chevron en las tarjetas colapsables
+        document
+          .querySelectorAll('[data-bs-toggle="collapse"]')
+          .forEach((card) => {
+            card.addEventListener("click", function () {
+              const chevron = this.querySelector(".fa-chevron-down");
+              if (chevron) {
+                chevron.classList.toggle("fa-rotate-180");
+              }
+            });
+          });
+
+        // Manejo del formulario de soporte
+        const supportForm = document.getElementById("supportForm");
+        if (supportForm) {
+          supportForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            if (this.checkValidity()) {
+              // Aquí puedes agregar el código para enviar el formulario
+              // Por ejemplo, usando EmailJS, Formspree, o abriendo el cliente de correo
+
+              const nombre = document.getElementById("nombre").value;
+              const email = document.getElementById("email").value;
+              const asunto = document.getElementById("asunto").value;
+              const mensaje = document.getElementById("mensaje").value;
+
+              // Opción 1: Abrir cliente de correo
+              const mailtoLink = `mailto:anasaraiborges@gmail.com?subject=Consulta UPTA: ${encodeURIComponent(asunto)}&body=Nombre: ${encodeURIComponent(nombre)}%0D%0AEmail: ${encodeURIComponent(email)}%0D%0A%0D%0AMensaje:%0D%0A${encodeURIComponent(mensaje)}`;
+              window.location.href = mailtoLink;
+
+              // Mostrar mensaje de éxito
+              document
+                .getElementById("successMessage")
+                .classList.remove("d-none");
+              this.reset();
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
